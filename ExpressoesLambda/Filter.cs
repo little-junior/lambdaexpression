@@ -1,4 +1,4 @@
 ﻿namespace ExpressoesLambda
 {
-    internal delegate bool Filter<T>(T element);
+    public delegate bool Filter<T>(T element);
 }
