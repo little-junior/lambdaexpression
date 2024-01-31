@@ -9,28 +9,28 @@ namespace ExpressoesLambda
     public class LivroFilter
     {
         public Filter<Livro> Filter { get; set; }
-        public object arg { get; set; }
+        public object FilterArgument { get; set; }
         public LivroFilter(int ano)
         {
-            arg = ano;
+            FilterArgument = ano;
             Filter = FiltrarPorAnoPublicacao;
         }
 
         public LivroFilter(decimal preco)
         {
-            arg = preco;
+            FilterArgument = preco;
             Filter = FiltrarPorPrecoMaximo;
         }
 
         public LivroFilter(string titulo)
         {
-            arg = titulo;
+            FilterArgument = titulo;
             Filter = FiltrarPorTitulo;
         }
-        public bool FiltrarPorAnoPublicacao(Livro livro) => livro.AnoPublicacao >= (int)arg;
+        private bool FiltrarPorAnoPublicacao(Livro livro) => livro.AnoPublicacao >= (int)FilterArgument;
 
-        public bool FiltrarPorPrecoMaximo(Livro livro) => livro.Preco <= (decimal)arg;
+        private bool FiltrarPorPrecoMaximo(Livro livro) => livro.Preco <= (decimal)FilterArgument;
 
-        public bool FiltrarPorTitulo(Livro livro) => livro.Titulo.Contains((string)arg);
+        private bool FiltrarPorTitulo(Livro livro) => livro.Titulo.Contains((string)FilterArgument, StringComparison.CurrentCultureIgnoreCase);
     }
 }
